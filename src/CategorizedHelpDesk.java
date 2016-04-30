@@ -70,9 +70,13 @@ public class CategorizedHelpDesk {
 
         helpDesk.enquire(Customer.JACK, Category.PHONE); // 3rd highest
         helpDesk.enquire(Customer.JILL, Category.PRINTER); // highest priority
-        helpDesk.enquire(Customer.MARY, Category.COMPUTER); // 2nd highest 
+        helpDesk.enquire(Customer.MARY, Category.COMPUTER); // 2nd highest
 
         ((PriorityHelpDesk) helpDesk).processAllEnquiries(); // downcast required -- method isn't in superclass
+
+        Calculator calc = new Calculator();
+        int answer = calc.evaluate(Calculator.TEST_INPUT);
+        System.out.println(answer);
 
     }
 
