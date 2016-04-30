@@ -7,8 +7,7 @@ import java.util.function.Predicate;
  */
 public class CategorizedHelpDesk {
 
-   private final Queue<Enquiry> enquiries = new ArrayDeque<>();
-
+    private final Queue<Enquiry> enquiries = new ArrayDeque<>();
 
     public void processPrinterEnquiry() {
 
@@ -62,21 +61,20 @@ public class CategorizedHelpDesk {
     public boolean enquire(final Customer customer,
                            final Category category) {
         return enquiries.offer(new Enquiry(customer, category));
+        // uses CategorizedHelpDesk#.enquiries
     }
 
     public static void main(String[] args) {
 
-        CategorizedHelpDesk helpDesk = new CategorizedHelpDesk();
+        CategorizedHelpDesk helpDesk = new PriorityHelpDesk();
 
-        helpDesk.enquire(Customer.JACK, Category.PHONE);
-        helpDesk.enquire(Customer.JILL, Category.PRINTER);
+        helpDesk.enquire(Customer.JACK, Category.PHONE); // 3rd highest
+        helpDesk.enquire(Customer.JILL, Category.PRINTER); // highest priority
+        helpDesk.enquire(Customer.MARY, Category.COMPUTER); // 2nd highest 
 
-        helpDesk.processPrinterEnquiry(); // JACK is first into the queue. He doesn't
-        // have a printer enquiry, so it gets ignored by this method
-        helpDesk.processGeneralEnquiry(); // now JACK's enquiry is processed
-        helpDesk.processPrinterEnquiry(); // and then JILL's -- first in, first out
-
-
+        ((PriorityHelpDesk) helpDesk).processAllEnquiries(); // downcast required -- method isn't in superclass
 
     }
+
+
 }

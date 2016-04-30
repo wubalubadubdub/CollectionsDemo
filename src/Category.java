@@ -3,6 +3,8 @@
  */
 public enum Category {
 
+    // this will be the order for our priority queue
+
     PRINTER,
     COMPUTER,
     PHONE,

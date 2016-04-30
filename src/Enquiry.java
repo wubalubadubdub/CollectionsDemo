@@ -28,6 +28,7 @@ public class Enquiry {
                 ", category=" + category +
                 '}';
     }
+    
 
 
 
